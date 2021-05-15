@@ -1,26 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <Post v-for="item in postList" :key="item.id" :postItem="item"></Post>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Post from './components/Post'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Post
+  },
+  computed:{
+    postList(){
+      return this.$store.getters.getPost
+    }
   }
 }
 </script>
 
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css";
+
 </style>
