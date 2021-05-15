@@ -34,16 +34,13 @@
                     <button type="button" class="[ btn btn-default ]">
                         <span class="[ glyphicon glyphicon-share-alt ]"></span>
                     </button>
-                    <div class="input-placeholder">Add a comment...</div>
-                </div>
-                <div class="panel-google-plus-comment">
-                    <img class="img-circle" src="https://lh3.googleusercontent.com/uFp_tsTJboUY7kue5XAsGA=s46" alt="User Image" />
                     <div class="panel-google-plus-textarea">
-                        <textarea rows="4"></textarea>
-                        <button type="submit" class="[ btn btn-success disabled ]">Post comment</button>
+                        <textarea rows="4" cols="100" v-model="cmt"></textarea>
+                        <button type="submit" class="[ btn btn-success ]" @click="addcmt()">Post comment</button>
                         <button type="reset" class="[ btn btn-default ]">Cancel</button>
                     </div>
-                    <div class="clearfix"></div>
+                    <!-- <div class="input-placeholder">Add a comment...</div> -->
+                    
                 </div>
             </div>
         </div>
@@ -74,6 +71,28 @@ export default {
     computed:{
         commentList(){
             return this.$store.getters.getCommentsByPost(this.postItem.id)
+        }, 
+
+    },
+    data(){
+        return{
+            cmt:""
+        }
+    },
+    methods:{
+        addcmt(){
+            if(this.cmt!=""){
+                let id = this.commentList.length
+                this.$store.dispatch('addComment',{
+                content:this.cmt,
+                commentAt: new Date(),
+                commentBy: 'user1',
+                postId: this.postItem.id,
+                id:id++
+                 })
+                 this.cmt=""
+            }
+
         }
     }
     
@@ -88,6 +107,7 @@ body {
     background-color: rgb(229, 229, 229);
     padding-top: 60px;
     padding-bottom: 30px;
+    
 }
 
 .panel-google-plus {

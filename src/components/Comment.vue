@@ -4,14 +4,14 @@
             <div class="col-md-2 col-sm-2 hidden-xs">
               <figure class="thumbnail">
                 <img class="img-responsive" src="http://www.tangoflooring.ca/wp-content/uploads/2015/07/user-avatar-placeholder.png" />
-                <figcaption class="text-center">username</figcaption>
+                <figcaption class="text-center">{{user.name}}</figcaption>
               </figure>
             </div>
             <div class="col-md-10 col-sm-10">
               <div class="panel panel-default arrow left">
                 <div class="panel-body">
                   <header class="text-left">
-                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
+                    <div class="comment-user"><i class="fa fa-user"></i> {{user.name}}</div>
                     <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> {{commentItem.commentAt}}</time>
                   </header>
                   <div class="comment-post">
@@ -29,7 +29,12 @@
 <script>
 export default {
     name:"Comment",
-    props:['commentItem']
+    props:['commentItem'],
+    computed:{
+      user(){
+        return this.$store.getters.getUser
+      }
+    },
 }
 </script>
 <style scoped>
