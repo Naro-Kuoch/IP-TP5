@@ -23,7 +23,8 @@ const store = createStore({
                 },
                 {
                     title:"abc",
-                    content:"helllo this is my another post",
+                    content:"helllo this is my another post "+
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                     postAt: new Date(),
                     postBy:"user1",
                     id:"post2"
@@ -45,6 +46,13 @@ const store = createStore({
                     commentBy: "user1",
                     postId:"post1",
                     id:2
+                },
+                {
+                    content:"my comment123",
+                    commentAt: new Date(),
+                    commentBy: "user1",
+                    postId:"post2",
+                    id:1
                 }
             ]
         }
@@ -62,8 +70,8 @@ const store = createStore({
         getComment(state){
             return state.comments
         },
-        getCommentOfPost: (state) => (postID)=>{
-            return state.comments.filter(comment => comment.postID == postID)
+        getCommentsByPost: (state) => (postId) => {
+            return state.comments.filter(comment => comment.postId == postId)
         }
     }
 })

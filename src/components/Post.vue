@@ -52,8 +52,8 @@
         <div class="col-sm-offset-1 col-sm-10">
             <h2 class="page-header">Comments</h2>
             <section class="comment-list">
-                <!-- <Comment v-for="item in CommentList" :key="item.id" :commentItem="item"></Comment> -->
-                <comment></comment>
+                <comment v-for="item in commentList" :key="item.id" :commentItem="item"></comment>
+                <!-- <comment></comment> -->
             </section>
         </div>
     </div>
@@ -73,7 +73,7 @@ export default {
     },
     computed:{
         commentList(){
-            return this.$store.getCommentOfPost(this.postItem.id)
+            return this.$store.getters.getCommentsByPost(this.postItem.id)
         }
     }
     
