@@ -61,6 +61,9 @@ const store = createStore({
         },
         getComment(state){
             return state.comments
+        },
+        getCommentOfPost: (state) => (postID)=>{
+            return state.comments.filter(comment => comment.postID == postID)
         }
     }
 })
